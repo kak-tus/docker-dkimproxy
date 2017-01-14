@@ -2,7 +2,7 @@
 
 dkimproxy.out --sender_map=/etc/dkimproxy.map --user=user --group=user \
   0.0.0.0:10027 \
-  {{ if service "mail" }}{{ range service "mail" }}{{ .Address }}:{{ .Port }}{{ end }}{{ else }}mail.weave.local:10028{{ end }} &
+  {{ if service "mail-dkim" }}{{ range service "mail-dkim" }}{{ .Address }}:{{ .Port }}{{ end }}{{ else }}mail.weave.local:10028{{ end }} &
 
 child=$!
 
