@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+dkimproxy.out --sender_map=/etc/dkimproxy.map --user=user --group=user \
+  0.0.0.0:10027 \
+  {{ if service "mail" }}{{ range service "mail" }}{{ .Address }}{{ end }}{{ else }}mail.weave.local{{ end }}:10028 &
+
+child=$!
+
+trap "kill $child" INT TERM
+wait "$child"
