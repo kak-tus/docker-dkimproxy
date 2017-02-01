@@ -2,7 +2,7 @@
 
 dkimproxy.out --sender_map=/etc/dkimproxy.map --user=user --group=user \
   0.0.0.0:10027 \
-  mail.weave.local:10028 &
+  {{ key "config/mail/host" }}:{{ key "config/mail/port" }} &
 
 child=$!
 
