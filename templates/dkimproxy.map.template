@@ -1,3 +1,0 @@
-{{ range $host := secrets "secret/dkim" }}{{ with secret ( printf "secret/dkim/%s" $host ) }}
-{{ $host }} dkim(s=mail,key=/etc/dkim/{{ $host }}.key){{ plugin "store.sh" ( printf "/etc/dkim/%s.key" $host ) ( printf "%s" .Data.value ) }}
-{{ end }}{{ end }}
